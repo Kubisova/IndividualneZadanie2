@@ -20,11 +20,19 @@ namespace FinishLine.Core
 
         public void AddRacer()
         {
+            if (StartNumber == 0 || Name == "" || Age == 0 )
+            {
+                throw new ArgumentException("Nie sú vyplnené všetky potrebné údaje alebo sú zle vyplnené!");
+            }
             RacerRepository.Add(StartNumber, Name, Age, Gender, Country);
         }
 
         public void EditRacer()
         {
+            if (StartNumber == 0 || Name == "" || Age == 0)
+            {
+                throw new ArgumentException("Nie sú vyplnené všetky potrebné údaje alebo sú zle vyplnené!");
+            }
             RacerRepository.Edit(OldStartNumber, StartNumber, Name, Age, Gender, Country);
         }
 

@@ -82,19 +82,23 @@ namespace FinishLine
                 _frmAddRacersViewModel.Gender = Gender.Male;
             }
             _frmAddRacersViewModel.Country = cmbCountry.SelectedValue.ToString();
-            if (_frmAddRacersViewModel.IsEdit)
+            try
             {
-                _frmAddRacersViewModel.EditRacer();
+                if (_frmAddRacersViewModel.IsEdit)
+                {
+                    _frmAddRacersViewModel.EditRacer();
+                }
+                else
+                {
+                    _frmAddRacersViewModel.AddRacer();
+                }
+
+                Close();
             }
-            else
+            catch(Exception ex)
             {
-                _frmAddRacersViewModel.AddRacer();
+                MessageBox.Show(ex.Message, "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            
-            Close();
-            
-
-
         }
     }
 }

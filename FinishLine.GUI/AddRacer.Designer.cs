@@ -74,6 +74,7 @@
             // 
             // cmbCountry
             // 
+            this.cmbCountry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCountry.FormattingEnabled = true;
             this.cmbCountry.Location = new System.Drawing.Point(138, 185);
             this.cmbCountry.Name = "cmbCountry";
@@ -132,6 +133,11 @@
             // numAge
             // 
             this.numAge.Location = new System.Drawing.Point(138, 95);
+            this.numAge.Maximum = new decimal(new int[] {
+            120,
+            0,
+            0,
+            0});
             this.numAge.Name = "numAge";
             this.numAge.Size = new System.Drawing.Size(120, 20);
             this.numAge.TabIndex = 2;
@@ -139,6 +145,11 @@
             // numStartNumber
             // 
             this.numStartNumber.Location = new System.Drawing.Point(138, 23);
+            this.numStartNumber.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
             this.numStartNumber.Name = "numStartNumber";
             this.numStartNumber.Size = new System.Drawing.Size(120, 20);
             this.numStartNumber.TabIndex = 0;
