@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace FinishLine.Core.Helpers
 {
+    /// <summary>
+    /// Trieda, ktora umoznuje zaznamenanie chyb do logu
+    /// </summary>
     static class ErrorLogger
     {
         public static void ErrorLogging(Exception ex)

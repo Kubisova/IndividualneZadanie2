@@ -6,12 +6,18 @@ using System.Threading.Tasks;
 
 namespace FinishLine.Core
 {
+    /// <summary>
+    /// Trieda, ktora je na pozadi formulara pre nastavenia a zbiera a preposiela data
+    /// </summary>
     public class FrmSettingsViewModel
     {
         public int RoundLength { get; set; }
         public int RoundCount { get; set; }
         public int NumberOfWinners { get; set; }
 
+        /// <summary>
+        /// Metoda na ulozenie nastaveni
+        /// </summary>
         public void SaveSettings()
         {
             Race.RoundLength = RoundLength;
@@ -19,6 +25,9 @@ namespace FinishLine.Core
             Race.NumberOfWinners = NumberOfWinners;
         }
 
+        /// <summary>
+        /// Metoda na vratenie nastaveni do frm
+        /// </summary>
         public void GetSettings()
         {
             RoundLength = Race.RoundLength;

@@ -8,9 +8,11 @@ namespace FinishLine.Core
 {
     public enum Gender { Male, Female, NotEntered}
 
+    /// <summary>
+    /// Trieda, ktora reprezentuje pretekara
+    /// </summary>
     public class Racer
     {
-
         [System.ComponentModel.DisplayName("Štartovacie číslo")]
         public int StartNumber { get; set; }
         [System.ComponentModel.DisplayName("Meno")]
@@ -22,6 +24,14 @@ namespace FinishLine.Core
         [System.ComponentModel.DisplayName("Krajina")]
         public string Country { get; set; }
 
+        /// <summary>
+        /// Konstruktor pretekara
+        /// </summary>
+        /// <param name="startNumber">startove cislo</param>
+        /// <param name="name">meno</param>
+        /// <param name="age">vek</param>
+        /// <param name="gender">pohlavie</param>
+        /// <param name="country">krajina</param>
         public Racer(int startNumber, string name, int age, Gender gender, string country)
         {
             StartNumber = startNumber;

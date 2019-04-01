@@ -9,6 +9,9 @@ using KBCsv;
 
 namespace FinishLine.Core
 {
+    /// <summary>
+    /// Pomocna trieda, ktora zabezpecuje obsah komboboxu na vyber krajiny
+    /// </summary>
     public class CountryRepository
     {
         private Dictionary<string, string> _countries = new Dictionary<string, string>();

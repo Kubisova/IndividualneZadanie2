@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace FinishLine.Core
 {
+    /// <summary>
+    /// Trieda, ktora je na pozadi formulara pre pridanie a editaciu pretekara a zbiera a preposiela data
+    /// </summary>
     public class FrmAddRacersViewModel
     {
         public int StartNumber { get; set; }

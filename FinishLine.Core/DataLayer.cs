@@ -10,6 +10,9 @@ using Newtonsoft.Json;
 
 namespace FinishLine.Core
 {
+    /// <summary>
+    /// Trieda, ktora umoznuje a zabezpecuje pracu s datami (uklada a cita ich zo suborov)
+    /// </summary>
     public static class DataLayer
     {
         public static string DirectoryPath { get; set; }
@@ -29,7 +32,7 @@ namespace FinishLine.Core
             }
         }
 
-        public static void SaveSettingsToTxt(int roundLength, int roundCount, int numberOfWinners, DateTime raceStartTime,int lastStartNumber)
+        public static void SaveSettingsToTxt(int roundLength, int roundCount, int numberOfWinners, DateTime raceStartTime,int lastStartNumber, DateTime raceEndTime)
         {
             try
             {
@@ -40,6 +43,8 @@ namespace FinishLine.Core
                     sw.WriteLine(numberOfWinners);
                     sw.WriteLine(raceStartTime);
                     sw.WriteLine(lastStartNumber);
+                    sw.WriteLine(raceEndTime);
+
                 }
             }
             catch (Exception ex)
@@ -106,6 +111,8 @@ namespace FinishLine.Core
                 Race.NumberOfWinners = int.Parse(settings[2]);
                 Race.RaceStartTime = DateTime.Parse(settings[3]);
                 RacerRepository.LastStartNumber = int.Parse(settings[4]);
+                Race.RaceEndTime = DateTime.Parse(settings[5]);
+
 
             }
             catch (Exception ex)

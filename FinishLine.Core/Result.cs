@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace FinishLine.Core
 {
+    /// <summary>
+    /// Trieda, ktora reprezentuje vysledok pretekara
+    /// </summary>
     public class Result
     {
         [System.ComponentModel.DisplayName("Štartovacie číslo")]

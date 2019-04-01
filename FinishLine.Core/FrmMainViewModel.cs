@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace FinishLine.Core
 {
+    /// <summary>
+    /// Trieda, ktora je na pozadi hlavneho formulara a zbiera a preposiela data
+    /// </summary>
     public class FrmMainViewModel
     {
         public int RacerNumber { get; set; }
@@ -44,7 +47,7 @@ namespace FinishLine.Core
         {
             DataLayer.DirectoryPath = directoryPath;
             DataLayer.SaveToJson(RacerRepository.Racers, Race.Results, Race.FinishedRounds);
-            DataLayer.SaveSettingsToTxt(Race.RoundLength, Race.RoundCount, Race.NumberOfWinners, Race.RaceStartTime, RacerRepository.LastStartNumber);
+            DataLayer.SaveSettingsToTxt(Race.RoundLength, Race.RoundCount, Race.NumberOfWinners, Race.RaceStartTime, RacerRepository.LastStartNumber, Race.RaceEndTime);
         }
 
         public void LoadFromFile(string directoryPath)

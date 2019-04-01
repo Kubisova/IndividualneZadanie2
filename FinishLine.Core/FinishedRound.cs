@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace FinishLine.Core
 {
+    /// <summary>
+    /// Trieda, ktora reprezentuje odbehnute kola pretekarov
+    /// </summary>
     public class FinishedRound
     {
         [System.ComponentModel.DisplayName("Štartovacie číslo")]
