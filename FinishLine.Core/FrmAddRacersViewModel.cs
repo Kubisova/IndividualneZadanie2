@@ -20,18 +20,18 @@ namespace FinishLine.Core
 
         public void AddRacer()
         {
-            if (StartNumber == 0 || Name == "" || Age == 0 )
+            if (StartNumber == 0 || Name == "" || Age == 0 ||Gender == Gender.NotEntered)
             {
-                throw new ArgumentException("Nie sú vyplnené všetky potrebné údaje alebo sú zle vyplnené!");
+                throw new ArgumentException("Nie sú vyplnené všetky potrebné údaje alebo sú nesprávne vyplnené!");
             }
             RacerRepository.Add(StartNumber, Name, Age, Gender, Country);
         }
 
         public void EditRacer()
         {
-            if (StartNumber == 0 || Name == "" || Age == 0)
+            if (StartNumber == 0 || Name == "" || Age == 0 ||Gender == Gender.NotEntered)
             {
-                throw new ArgumentException("Nie sú vyplnené všetky potrebné údaje alebo sú zle vyplnené!");
+                throw new ArgumentException("Nie sú vyplnené všetky potrebné údaje alebo sú nespávne vyplnené!");
             }
             RacerRepository.Edit(OldStartNumber, StartNumber, Name, Age, Gender, Country);
         }

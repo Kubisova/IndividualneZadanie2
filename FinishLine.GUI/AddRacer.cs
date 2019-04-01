@@ -57,7 +57,7 @@ namespace FinishLine
             }
             else
             {
-                rdnMale.Select();
+                rdnMan.Select();
             }
 
             CountryRepository countries = new CountryRepository();
@@ -77,9 +77,13 @@ namespace FinishLine
             {
                 _frmAddRacersViewModel.Gender = Gender.Female;
             }
-            else
+            else if (rdnMan.Checked)
             {
                 _frmAddRacersViewModel.Gender = Gender.Male;
+            }
+            else
+            {
+                _frmAddRacersViewModel.Gender = Gender.NotEntered;
             }
             _frmAddRacersViewModel.Country = cmbCountry.SelectedValue.ToString();
             try

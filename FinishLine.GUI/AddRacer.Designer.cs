@@ -34,7 +34,7 @@
             this.cmbCountry = new System.Windows.Forms.ComboBox();
             this.lblCountry = new System.Windows.Forms.Label();
             this.grpBGender = new System.Windows.Forms.GroupBox();
-            this.rdnMale = new System.Windows.Forms.RadioButton();
+            this.rdnMan = new System.Windows.Forms.RadioButton();
             this.rdnWoman = new System.Windows.Forms.RadioButton();
             this.txtName = new System.Windows.Forms.TextBox();
             this.numAge = new System.Windows.Forms.NumericUpDown();
@@ -92,7 +92,7 @@
             // 
             // grpBGender
             // 
-            this.grpBGender.Controls.Add(this.rdnMale);
+            this.grpBGender.Controls.Add(this.rdnMan);
             this.grpBGender.Controls.Add(this.rdnWoman);
             this.grpBGender.Location = new System.Drawing.Point(315, 95);
             this.grpBGender.Name = "grpBGender";
@@ -101,16 +101,16 @@
             this.grpBGender.TabStop = false;
             this.grpBGender.Text = "Pohlavie";
             // 
-            // rdnMale
+            // rdnMan
             // 
-            this.rdnMale.AutoSize = true;
-            this.rdnMale.Location = new System.Drawing.Point(29, 42);
-            this.rdnMale.Name = "rdnMale";
-            this.rdnMale.Size = new System.Drawing.Size(45, 17);
-            this.rdnMale.TabIndex = 1;
-            this.rdnMale.TabStop = true;
-            this.rdnMale.Text = "Muž";
-            this.rdnMale.UseVisualStyleBackColor = true;
+            this.rdnMan.AutoSize = true;
+            this.rdnMan.Location = new System.Drawing.Point(29, 42);
+            this.rdnMan.Name = "rdnMan";
+            this.rdnMan.Size = new System.Drawing.Size(45, 17);
+            this.rdnMan.TabIndex = 1;
+            this.rdnMan.TabStop = true;
+            this.rdnMan.Text = "Muž";
+            this.rdnMan.UseVisualStyleBackColor = true;
             // 
             // rdnWoman
             // 
@@ -200,7 +200,7 @@
         private System.Windows.Forms.ComboBox cmbCountry;
         private System.Windows.Forms.Label lblCountry;
         private System.Windows.Forms.GroupBox grpBGender;
-        private System.Windows.Forms.RadioButton rdnMale;
+        private System.Windows.Forms.RadioButton rdnMan;
         private System.Windows.Forms.RadioButton rdnWoman;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.NumericUpDown numAge;

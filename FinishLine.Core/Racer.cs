@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FinishLine.Core
 {
-    public enum Gender { Male, Female}
+    public enum Gender { Male, Female, NotEntered}
 
     public class Racer
     {
