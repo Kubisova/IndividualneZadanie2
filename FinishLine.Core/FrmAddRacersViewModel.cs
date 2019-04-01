@@ -24,6 +24,12 @@ namespace FinishLine.Core
             {
                 throw new ArgumentException("Nie sú vyplnené všetky potrebné údaje alebo sú nesprávne vyplnené!");
             }
+
+            if (RacerRepository.IsStartNumberUsed(StartNumber))
+            {
+                throw new ArgumentException("Zadané štartovacie číslo už bolo pridelené!");
+            }
+
             RacerRepository.Add(StartNumber, Name, Age, Gender, Country);
         }
 
@@ -33,6 +39,15 @@ namespace FinishLine.Core
             {
                 throw new ArgumentException("Nie sú vyplnené všetky potrebné údaje alebo sú nespávne vyplnené!");
             }
+
+            if (StartNumber!=OldStartNumber)
+            {
+                if (RacerRepository.IsStartNumberUsed(StartNumber))
+                {
+                    throw new ArgumentException("Zadané štartovacie číslo už bolo pridelené!");
+                }
+            }
+
             RacerRepository.Edit(OldStartNumber, StartNumber, Name, Age, Gender, Country);
         }
 
@@ -57,6 +72,4 @@ namespace FinishLine.Core
             NextStartNumber = RacerRepository.GetNextStartNumber();
         }
     }
-
-    
 }

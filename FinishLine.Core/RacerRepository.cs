@@ -84,5 +84,10 @@ namespace FinishLine.Core
 
             return nextStartNumber;
         }
+
+        public static bool IsStartNumberUsed(int startNumber)
+        {
+            return Racers.Any(r => r.StartNumber == startNumber);
+        }
     }
 }
