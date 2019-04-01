@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace FinishLine.Core
 {
-    class Settings
-    {
-        public int RaceLength { get; set; }
-        public int RoundsCount { get; set; }
-        public int WinnersCount { get; set; }
-    }
+    //class Settings
+    //{
+    //   // public int RoundLength { get; set; } 
+    //    //public int RoundsCount { get; set; } 
+    //    //public int WinnersCount { get; set; }
+    //}
+
+
 }

@@ -52,6 +52,12 @@
     <Compile Include="AddRacer.Designer.cs">
       <DependentUpon>AddRacer.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSettings.Designer.cs">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +77,9 @@
     </Compile>
     <EmbeddedResource Include="AddRacer.resx">
       <DependentUpon>AddRacer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSettings.resx">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmView.resx">
       <DependentUpon>FrmView.cs</DependentUpon>

@@ -12,6 +12,7 @@ namespace FinishLine.Core
     public class CountryRepository
     {
         private Dictionary<string, string> _countries = new Dictionary<string, string>();
+        public const string DATA_PATH = @"Data\countries.csv";
 
         public CountryRepository()
         {
@@ -20,8 +21,10 @@ namespace FinishLine.Core
 
         private void ReadCSVFromFile()
         {
-            using (var streamReader = new StreamReader(@"c:\Users\kubisova\source\repos\IndividualneZadanie2\Data\countries.csv"))
-            using (var reader = new CsvReader(streamReader))
+            string localPathToData = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, DATA_PATH);
+
+            using (var streamReader = new StreamReader(localPathToData))
+            using (CsvReader reader = new CsvReader(streamReader))
             {
                 reader.ValueSeparator = ';';
                 reader.ReadHeaderRecord();

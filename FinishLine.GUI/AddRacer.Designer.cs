@@ -34,11 +34,11 @@
             this.cmbCountry = new System.Windows.Forms.ComboBox();
             this.lblCountry = new System.Windows.Forms.Label();
             this.grpBGender = new System.Windows.Forms.GroupBox();
+            this.rdnMale = new System.Windows.Forms.RadioButton();
+            this.rdnWoman = new System.Windows.Forms.RadioButton();
             this.txtName = new System.Windows.Forms.TextBox();
             this.numAge = new System.Windows.Forms.NumericUpDown();
             this.numStartNumber = new System.Windows.Forms.NumericUpDown();
-            this.rdnWoman = new System.Windows.Forms.RadioButton();
-            this.rdn = new System.Windows.Forms.RadioButton();
             this.btnSave = new System.Windows.Forms.Button();
             this.grpBGender.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numAge)).BeginInit();
@@ -78,7 +78,7 @@
             this.cmbCountry.Location = new System.Drawing.Point(138, 185);
             this.cmbCountry.Name = "cmbCountry";
             this.cmbCountry.Size = new System.Drawing.Size(269, 21);
-            this.cmbCountry.TabIndex = 5;
+            this.cmbCountry.TabIndex = 4;
             // 
             // lblCountry
             // 
@@ -91,40 +91,30 @@
             // 
             // grpBGender
             // 
-            this.grpBGender.Controls.Add(this.rdn);
+            this.grpBGender.Controls.Add(this.rdnMale);
             this.grpBGender.Controls.Add(this.rdnWoman);
-            this.grpBGender.Location = new System.Drawing.Point(288, 94);
+            this.grpBGender.Location = new System.Drawing.Point(315, 95);
             this.grpBGender.Name = "grpBGender";
-            this.grpBGender.Size = new System.Drawing.Size(119, 77);
-            this.grpBGender.TabIndex = 7;
+            this.grpBGender.Size = new System.Drawing.Size(92, 77);
+            this.grpBGender.TabIndex = 3;
             this.grpBGender.TabStop = false;
             this.grpBGender.Text = "Pohlavie";
             // 
-            // txtName
+            // rdnMale
             // 
-            this.txtName.Location = new System.Drawing.Point(138, 60);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(269, 20);
-            this.txtName.TabIndex = 8;
-            // 
-            // numAge
-            // 
-            this.numAge.Location = new System.Drawing.Point(138, 95);
-            this.numAge.Name = "numAge";
-            this.numAge.Size = new System.Drawing.Size(120, 20);
-            this.numAge.TabIndex = 9;
-            // 
-            // numStartNumber
-            // 
-            this.numStartNumber.Location = new System.Drawing.Point(138, 23);
-            this.numStartNumber.Name = "numStartNumber";
-            this.numStartNumber.Size = new System.Drawing.Size(120, 20);
-            this.numStartNumber.TabIndex = 10;
+            this.rdnMale.AutoSize = true;
+            this.rdnMale.Location = new System.Drawing.Point(29, 42);
+            this.rdnMale.Name = "rdnMale";
+            this.rdnMale.Size = new System.Drawing.Size(45, 17);
+            this.rdnMale.TabIndex = 1;
+            this.rdnMale.TabStop = true;
+            this.rdnMale.Text = "Muž";
+            this.rdnMale.UseVisualStyleBackColor = true;
             // 
             // rdnWoman
             // 
             this.rdnWoman.AutoSize = true;
-            this.rdnWoman.Location = new System.Drawing.Point(47, 19);
+            this.rdnWoman.Location = new System.Drawing.Point(29, 19);
             this.rdnWoman.Name = "rdnWoman";
             this.rdnWoman.Size = new System.Drawing.Size(50, 17);
             this.rdnWoman.TabIndex = 0;
@@ -132,23 +122,33 @@
             this.rdnWoman.Text = "Žena";
             this.rdnWoman.UseVisualStyleBackColor = true;
             // 
-            // rdn
+            // txtName
             // 
-            this.rdn.AutoSize = true;
-            this.rdn.Location = new System.Drawing.Point(47, 42);
-            this.rdn.Name = "rdn";
-            this.rdn.Size = new System.Drawing.Size(45, 17);
-            this.rdn.TabIndex = 1;
-            this.rdn.TabStop = true;
-            this.rdn.Text = "Muž";
-            this.rdn.UseVisualStyleBackColor = true;
+            this.txtName.Location = new System.Drawing.Point(138, 60);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(269, 20);
+            this.txtName.TabIndex = 1;
+            // 
+            // numAge
+            // 
+            this.numAge.Location = new System.Drawing.Point(138, 95);
+            this.numAge.Name = "numAge";
+            this.numAge.Size = new System.Drawing.Size(120, 20);
+            this.numAge.TabIndex = 2;
+            // 
+            // numStartNumber
+            // 
+            this.numStartNumber.Location = new System.Drawing.Point(138, 23);
+            this.numStartNumber.Name = "numStartNumber";
+            this.numStartNumber.Size = new System.Drawing.Size(120, 20);
+            this.numStartNumber.TabIndex = 0;
             // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(332, 235);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 11;
+            this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Ulož";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -157,7 +157,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(441, 299);
+            this.ClientSize = new System.Drawing.Size(432, 283);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.numStartNumber);
             this.Controls.Add(this.numAge);
@@ -168,6 +168,8 @@
             this.Controls.Add(this.lblAge);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.lblStartNumber);
+            this.MaximumSize = new System.Drawing.Size(448, 321);
+            this.MinimumSize = new System.Drawing.Size(448, 321);
             this.Name = "FrmAddRacer";
             this.Text = "Pridaj pretekára";
             this.grpBGender.ResumeLayout(false);
@@ -187,7 +189,7 @@
         private System.Windows.Forms.ComboBox cmbCountry;
         private System.Windows.Forms.Label lblCountry;
         private System.Windows.Forms.GroupBox grpBGender;
-        private System.Windows.Forms.RadioButton rdn;
+        private System.Windows.Forms.RadioButton rdnMale;
         private System.Windows.Forms.RadioButton rdnWoman;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.NumericUpDown numAge;

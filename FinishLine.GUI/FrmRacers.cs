@@ -19,6 +19,7 @@ namespace FinishLine
         {
             _frmRacersViewModel = frmRacersViewModel;
             InitializeComponent();
+            dGVRacers.DataSource = RacerRepository.Racers;
             Init();
         }
 
@@ -31,7 +32,33 @@ namespace FinishLine
         {
             using (var frmAddRacer = new FrmAddRacer(this, new FrmAddRacersViewModel()))
             {
+                frmAddRacer.StartPosition = FormStartPosition.CenterParent;
                 frmAddRacer.ShowDialog();
+            }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            int index = dGVRacers.CurrentRow.Index;
+            using (var frmAddRacer = new FrmAddRacer(this, new FrmAddRacersViewModel(), index))
+            {
+                
+                frmAddRacer.Text = "Oprav pretekára";
+                frmAddRacer.StartPosition = FormStartPosition.CenterParent;
+                frmAddRacer.ShowDialog();
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dGVRacers.SelectedRows)
+            {
+                dGVRacers.Rows.RemoveAt(row.Index);
             }
         }
     }
