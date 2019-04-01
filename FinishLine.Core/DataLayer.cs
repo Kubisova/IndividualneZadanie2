@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace FinishLine.Core
 {
-    public static class FileHelper
+    public static class DataLayer
     {
         public static string DirectoryPath { get; set; }
 

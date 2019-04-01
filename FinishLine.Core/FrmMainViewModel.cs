@@ -42,18 +42,18 @@ namespace FinishLine.Core
 
         public void SaveToFile(string directoryPath)
         {
-            FileHelper.DirectoryPath = directoryPath;
-            FileHelper.SaveToJson(RacerRepository.Racers, Race.Results, Race.FinishedRounds);
-            FileHelper.SaveSettingsToTxt(Race.RoundLength, Race.RoundCount, Race.NumberOfWinners, Race.RaceStartTime, RacerRepository.LastStartNumber);
+            DataLayer.DirectoryPath = directoryPath;
+            DataLayer.SaveToJson(RacerRepository.Racers, Race.Results, Race.FinishedRounds);
+            DataLayer.SaveSettingsToTxt(Race.RoundLength, Race.RoundCount, Race.NumberOfWinners, Race.RaceStartTime, RacerRepository.LastStartNumber);
         }
 
         public void LoadFromFile(string directoryPath)
         {
-            FileHelper.DirectoryPath = directoryPath;
-            FileHelper.LoadRacersFromJson();
-            FileHelper.LoadResultsFromJson();
-            FileHelper.LoadFinishedRoundsFromJson();
-            FileHelper.LoadFromTxt();
+            DataLayer.DirectoryPath = directoryPath;
+            DataLayer.LoadRacersFromJson();
+            DataLayer.LoadResultsFromJson();
+            DataLayer.LoadFinishedRoundsFromJson();
+            DataLayer.LoadFromTxt();
         }
 
     }

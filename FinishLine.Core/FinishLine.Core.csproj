@@ -47,8 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CountryRepository.cs" />
-    <Compile Include="FileHelper.cs" />
+    <Compile Include="Helpers\CountryRepository.cs" />
+    <Compile Include="DataLayer.cs" />
     <Compile Include="FinishedRound.cs" />
     <Compile Include="FrmAddRacersViewModel.cs" />
     <Compile Include="FrmRacersViewModel.cs" />
@@ -60,7 +60,6 @@
     <Compile Include="RacerFactory.cs" />
     <Compile Include="RacerRepository.cs" />
     <Compile Include="Result.cs" />
-    <Compile Include="Settings.cs" />
     <Compile Include="FrmMainViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
