@@ -21,12 +21,6 @@ namespace FinishLine
             InitializeComponent();
             dGVFinishedRounds.DataSource = Race.FinishedRounds;
             dGVResults.DataSource = Race.Results;
-            Init();
-        }
-
-        private void Init()
-        {
-
         }
 
         private void RacersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -50,6 +44,7 @@ namespace FinishLine
         private void btnStartRace_Click(object sender, EventArgs e)
         {
             _frmMainViewModel.StartRace();
+            txtRaceStart.Text = Race.RaceStartTime.ToLongTimeString();
         }
 
         private void btnRegisterFinishedRound_Click(object sender, EventArgs e)
@@ -98,6 +93,12 @@ namespace FinishLine
         private void folderBrowserDialog1_HelpRequest(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnRaceEnd_Click(object sender, EventArgs e)
+        {
+            _frmMainViewModel.EndRace();
+            txtRaceEnd.Text = Race.RaceEndTime.ToLongTimeString();
         }
     }
 }

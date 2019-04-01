@@ -43,6 +43,9 @@
             this.lblFinalResult = new System.Windows.Forms.Label();
             this.btnRegisterFinishedRound = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.btnRaceEnd = new System.Windows.Forms.Button();
+            this.txtRaceStart = new System.Windows.Forms.TextBox();
+            this.txtRaceEnd = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGVFinishedRounds)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dGVResults)).BeginInit();
@@ -100,7 +103,7 @@
             // btnStartRace
             // 
             this.btnStartRace.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnStartRace.Location = new System.Drawing.Point(410, 0);
+            this.btnStartRace.Location = new System.Drawing.Point(526, 0);
             this.btnStartRace.Name = "btnStartRace";
             this.btnStartRace.Size = new System.Drawing.Size(110, 23);
             this.btnStartRace.TabIndex = 1;
@@ -183,11 +186,40 @@
             // 
             this.folderBrowserDialog1.HelpRequest += new System.EventHandler(this.folderBrowserDialog1_HelpRequest);
             // 
+            // btnRaceEnd
+            // 
+            this.btnRaceEnd.Location = new System.Drawing.Point(526, 29);
+            this.btnRaceEnd.Name = "btnRaceEnd";
+            this.btnRaceEnd.Size = new System.Drawing.Size(110, 23);
+            this.btnRaceEnd.TabIndex = 9;
+            this.btnRaceEnd.Text = "Preteky koniec";
+            this.btnRaceEnd.UseVisualStyleBackColor = true;
+            this.btnRaceEnd.Click += new System.EventHandler(this.btnRaceEnd_Click);
+            // 
+            // txtRaceStart
+            // 
+            this.txtRaceStart.Location = new System.Drawing.Point(658, 2);
+            this.txtRaceStart.Name = "txtRaceStart";
+            this.txtRaceStart.ReadOnly = true;
+            this.txtRaceStart.Size = new System.Drawing.Size(100, 20);
+            this.txtRaceStart.TabIndex = 10;
+            // 
+            // txtRaceEnd
+            // 
+            this.txtRaceEnd.Location = new System.Drawing.Point(658, 27);
+            this.txtRaceEnd.Name = "txtRaceEnd";
+            this.txtRaceEnd.ReadOnly = true;
+            this.txtRaceEnd.Size = new System.Drawing.Size(100, 20);
+            this.txtRaceEnd.TabIndex = 11;
+            // 
             // FrmView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(994, 543);
+            this.Controls.Add(this.txtRaceEnd);
+            this.Controls.Add(this.txtRaceStart);
+            this.Controls.Add(this.btnRaceEnd);
             this.Controls.Add(this.btnRegisterFinishedRound);
             this.Controls.Add(this.lblFinalResult);
             this.Controls.Add(this.dGVResults);
@@ -228,6 +260,9 @@
         private System.Windows.Forms.Label lblFinalResult;
         private System.Windows.Forms.Button btnRegisterFinishedRound;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Button btnRaceEnd;
+        private System.Windows.Forms.TextBox txtRaceStart;
+        private System.Windows.Forms.TextBox txtRaceEnd;
     }
 }
 

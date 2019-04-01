@@ -14,6 +14,8 @@ namespace FinishLine.Core
         public static int NumberOfWinners { get; set; } = 3;
 
         public static DateTime RaceStartTime { get; set; }
+        public static DateTime RaceEndTime { get; set; }
+
         public static BindingList<FinishedRound> FinishedRounds { get; set; } = new BindingList<FinishedRound>();
         public static BindingList<Result> Results { get; set; } = new BindingList<Result>();
 
@@ -21,6 +23,11 @@ namespace FinishLine.Core
         public static void StartRace()
         {
             RaceStartTime = DateTime.Now;
+        }
+
+        public static void EndRace()
+        {
+            RaceEndTime = DateTime.Now;
         }
 
         public static void RegisterFinishedRound(int racerNumber)

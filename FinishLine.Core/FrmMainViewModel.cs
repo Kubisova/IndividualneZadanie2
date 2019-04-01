@@ -15,6 +15,11 @@ namespace FinishLine.Core
             Race.StartRace();
         }
 
+        public void EndRace()
+        {
+            Race.EndRace();
+        }
+
         public void RegisterFinishedRound()
         {
             Race.RegisterFinishedRound(RacerNumber);
