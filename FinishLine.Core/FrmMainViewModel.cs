@@ -32,6 +32,11 @@ namespace FinishLine.Core
                 throw new ArgumentException("Preteky sa ešte nezačali. Je potrebné ich najskôr odštartovať.");
             }
 
+            if (Race.RaceEndTime!= DateTime.MinValue)
+            {
+                throw new ArgumentException("Preteky sa už skončili.");
+            }
+
             Race.RegisterFinishedRound(RacerNumber);
         }
 

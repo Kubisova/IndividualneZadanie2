@@ -25,24 +25,42 @@ namespace FinishLine
 
         private void RacersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (var frmRacers = new FrmRacers(this, new FrmRacersViewModel()))
+            if (Race.RaceStartTime != DateTime.MinValue)
             {
-                frmRacers.StartPosition = FormStartPosition.CenterParent;
-                frmRacers.ShowDialog();
+                MessageBox.Show("Nie je možné pridávať pretekárov. Preteky sa už začali.", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                using (var frmRacers = new FrmRacers(this, new FrmRacersViewModel()))
+                {
+                    frmRacers.StartPosition = FormStartPosition.CenterParent;
+                    frmRacers.ShowDialog();
+                }
             }
         }
 
         private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (var frmSettings = new FrmSettings(this, new FrmSettingsViewModel()))
+            if (Race.RaceStartTime != DateTime.MinValue)
             {
-                frmSettings.StartPosition = FormStartPosition.CenterParent;
-                frmSettings.ShowDialog();
+                MessageBox.Show("Nie je možné meniť nastavenia. Preteky sa už začali.", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                using (var frmSettings = new FrmSettings(this, new FrmSettingsViewModel()))
+                {
+                    frmSettings.StartPosition = FormStartPosition.CenterParent;
+                    frmSettings.ShowDialog();
+                }
             }
         }
 
         private void btnStartRace_Click(object sender, EventArgs e)
         {
+            if (Race.RaceStartTime != DateTime.MinValue)
+            {
+                MessageBox.Show("Nie je možné znova odštartovať preteky.", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
             _frmMainViewModel.StartRace();
             txtRaceStart.Text = Race.RaceStartTime.ToLongTimeString();
         }
@@ -106,8 +124,15 @@ namespace FinishLine
 
         private void btnRaceEnd_Click(object sender, EventArgs e)
         {
-            _frmMainViewModel.EndRace();
-            txtRaceEnd.Text = Race.RaceEndTime.ToLongTimeString();
+            if (Race.RaceEndTime != DateTime.MinValue)
+            {
+                MessageBox.Show("Nie je možné znova ukončiť preteky.", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                _frmMainViewModel.EndRace();
+                txtRaceEnd.Text = Race.RaceEndTime.ToLongTimeString();
+            }
         }
     }
 }
