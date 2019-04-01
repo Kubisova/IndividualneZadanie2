@@ -35,5 +35,6 @@ namespace FinishLine.Core
             FileHelper.LoadFinishedRoundsFromJson();
             FileHelper.LoadFromTxt();
         }
+
     }
 }

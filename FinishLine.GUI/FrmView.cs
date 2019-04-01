@@ -89,8 +89,10 @@ namespace FinishLine
                 {
                     MessageBox.Show("Chyba pri načítaní dát.");
                 }
+
+                dGVFinishedRounds.DataSource = Race.FinishedRounds;
+                dGVResults.DataSource = Race.Results;
             }
-            
         }
 
         private void folderBrowserDialog1_HelpRequest(object sender, EventArgs e)

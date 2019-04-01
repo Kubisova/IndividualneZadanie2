@@ -56,22 +56,63 @@ namespace FinishLine.Core
 
         public static void LoadRacersFromJson()
         {
-            BindingList<Racer> racers = JsonConvert.DeserializeObject < BindingList<Racer>>(File.ReadAllText(GetFullPath("Racers.json")));
+            try
+            {
+                BindingList<Racer> racers = JsonConvert.DeserializeObject<BindingList<Racer>>(File.ReadAllText(GetFullPath("Racers.json")));
+                RacerRepository.Racers = racers;
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.ErrorLogging(ex);
+                throw;
+            }
         }
 
         public static void LoadResultsFromJson()
         {
-            BindingList<Result> results = JsonConvert.DeserializeObject<BindingList<Result>>(File.ReadAllText(GetFullPath("Results.json")));
+            try
+            {
+                BindingList<Result> results = JsonConvert.DeserializeObject<BindingList<Result>>(File.ReadAllText(GetFullPath("Results.json")));
+                Race.Results = results;
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.ErrorLogging(ex);
+                throw;
+            }
         }
 
         public static void LoadFinishedRoundsFromJson()
         {
-            BindingList<Racer> finishedRounds = JsonConvert.DeserializeObject<BindingList<Racer>>(File.ReadAllText(GetFullPath("FinishedRounds.json")));
+            try
+            {
+                BindingList<FinishedRound> finishedRounds = JsonConvert.DeserializeObject<BindingList<FinishedRound>>(File.ReadAllText(GetFullPath("FinishedRounds.json")));
+                Race.FinishedRounds = finishedRounds;
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.ErrorLogging(ex);
+                throw;
+            }
         }
 
         public static void LoadFromTxt()
         {
+            try
+            {
+                string[] settings = File.ReadAllLines(GetFullPath("Settings.txt"));
+                Race.RoundLength = int.Parse(settings[0]);
+                Race.RoundCount = int.Parse(settings[1]);
+                Race.NumberOfWinners = int.Parse(settings[2]);
+                Race.RaceStartTime = DateTime.Parse(settings[3]);
+                RacerRepository.LastStartNumber = int.Parse(settings[4]);
 
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.ErrorLogging(ex);
+                throw;
+            }
         }
     }
 }
