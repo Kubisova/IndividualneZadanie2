@@ -36,7 +36,6 @@
             this.RacersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnStartRace = new System.Windows.Forms.Button();
             this.lblEnterRacerNumber = new System.Windows.Forms.Label();
-            this.txtRacerNumber = new System.Windows.Forms.TextBox();
             this.dGVFinishedRounds = new System.Windows.Forms.DataGridView();
             this.lblTempResults = new System.Windows.Forms.Label();
             this.dGVResults = new System.Windows.Forms.DataGridView();
@@ -46,9 +45,11 @@
             this.btnRaceEnd = new System.Windows.Forms.Button();
             this.txtRaceStart = new System.Windows.Forms.TextBox();
             this.txtRaceEnd = new System.Windows.Forms.TextBox();
+            this.numRacerNumber = new System.Windows.Forms.NumericUpDown();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGVFinishedRounds)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dGVResults)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numRacerNumber)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -120,13 +121,6 @@
             this.lblEnterRacerNumber.TabIndex = 2;
             this.lblEnterRacerNumber.Text = "Zadaj číslo pretekára";
             // 
-            // txtRacerNumber
-            // 
-            this.txtRacerNumber.Location = new System.Drawing.Point(126, 47);
-            this.txtRacerNumber.Name = "txtRacerNumber";
-            this.txtRacerNumber.Size = new System.Drawing.Size(156, 20);
-            this.txtRacerNumber.TabIndex = 3;
-            // 
             // dGVFinishedRounds
             // 
             this.dGVFinishedRounds.AllowUserToAddRows = false;
@@ -173,7 +167,7 @@
             // 
             // btnRegisterFinishedRound
             // 
-            this.btnRegisterFinishedRound.Location = new System.Drawing.Point(288, 47);
+            this.btnRegisterFinishedRound.Location = new System.Drawing.Point(278, 48);
             this.btnRegisterFinishedRound.Name = "btnRegisterFinishedRound";
             this.btnRegisterFinishedRound.Size = new System.Drawing.Size(127, 23);
             this.btnRegisterFinishedRound.TabIndex = 8;
@@ -212,11 +206,19 @@
             this.txtRaceEnd.Size = new System.Drawing.Size(100, 20);
             this.txtRaceEnd.TabIndex = 11;
             // 
+            // numRacerNumber
+            // 
+            this.numRacerNumber.Location = new System.Drawing.Point(143, 48);
+            this.numRacerNumber.Name = "numRacerNumber";
+            this.numRacerNumber.Size = new System.Drawing.Size(120, 20);
+            this.numRacerNumber.TabIndex = 12;
+            // 
             // FrmView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(994, 543);
+            this.Controls.Add(this.numRacerNumber);
             this.Controls.Add(this.txtRaceEnd);
             this.Controls.Add(this.txtRaceStart);
             this.Controls.Add(this.btnRaceEnd);
@@ -225,7 +227,6 @@
             this.Controls.Add(this.dGVResults);
             this.Controls.Add(this.lblTempResults);
             this.Controls.Add(this.dGVFinishedRounds);
-            this.Controls.Add(this.txtRacerNumber);
             this.Controls.Add(this.lblEnterRacerNumber);
             this.Controls.Add(this.btnStartRace);
             this.Controls.Add(this.menuStrip1);
@@ -238,6 +239,7 @@
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGVFinishedRounds)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dGVResults)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numRacerNumber)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -253,7 +255,6 @@
         private System.Windows.Forms.ToolStripMenuItem RacersToolStripMenuItem;
         private System.Windows.Forms.Button btnStartRace;
         private System.Windows.Forms.Label lblEnterRacerNumber;
-        private System.Windows.Forms.TextBox txtRacerNumber;
         private System.Windows.Forms.DataGridView dGVFinishedRounds;
         private System.Windows.Forms.Label lblTempResults;
         private System.Windows.Forms.DataGridView dGVResults;
@@ -263,6 +264,7 @@
         private System.Windows.Forms.Button btnRaceEnd;
         private System.Windows.Forms.TextBox txtRaceStart;
         private System.Windows.Forms.TextBox txtRaceEnd;
+        private System.Windows.Forms.NumericUpDown numRacerNumber;
     }
 }
 

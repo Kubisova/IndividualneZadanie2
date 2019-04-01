@@ -22,6 +22,16 @@ namespace FinishLine.Core
 
         public void RegisterFinishedRound()
         {
+            if (!RacerRepository.IsStartNumberUsed(RacerNumber))
+            {
+                throw new ArgumentException("Pretekár s takýmto štartovacím číslom nie je zaregistrovaný.");
+            }
+
+            if (Race.RaceStartTime == DateTime.MinValue)
+            {
+                throw new ArgumentException("Preteky sa ešte nezačali. Je potrebné ich najskôr odštartovať.");
+            }
+
             Race.RegisterFinishedRound(RacerNumber);
         }
 

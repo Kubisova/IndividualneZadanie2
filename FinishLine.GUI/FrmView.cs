@@ -49,8 +49,17 @@ namespace FinishLine
 
         private void btnRegisterFinishedRound_Click(object sender, EventArgs e)
         {
-            _frmMainViewModel.RacerNumber = int.Parse(txtRacerNumber.Text);
-            _frmMainViewModel.RegisterFinishedRound();
+            _frmMainViewModel.RacerNumber = (int)numRacerNumber.Value; 
+            try
+            {
+                _frmMainViewModel.RegisterFinishedRound();
+                numRacerNumber.Value = 0;  
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            
         }
 
         private void saveToFileToolStripMenuItem_Click(object sender, EventArgs e)
