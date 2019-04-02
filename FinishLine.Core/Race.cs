@@ -13,7 +13,7 @@ namespace FinishLine.Core
     public static class Race
     {
         public static int RoundLength { get; set; } = 1;
-        public static int RoundCount { get; set; } = 3;
+        public static int RoundCount { get; set; } = 50;
         public static int NumberOfWinners { get; set; } = 3;
 
         public static DateTime RaceStartTime { get; set; }
