@@ -21,6 +21,9 @@ namespace FinishLine.Core
         public int OldStartNumber { get; set; }
         public int NextStartNumber { get; set; }
 
+        /// <summary>
+        /// Metoda, ktora vola metodu na pridanie pretekara a zistuje ci su zadane udaje spravne
+        /// </summary>
         public void AddRacer()
         {
             if (StartNumber == 0 || Name == "" || Age == 0 ||Gender == Gender.NotEntered)
@@ -36,6 +39,9 @@ namespace FinishLine.Core
             RacerRepository.Add(StartNumber, Name, Age, Gender, Country);
         }
 
+        /// <summary>
+        /// Metoda, ktora vola metodu na editovanie pretekara a zistuje ci su zadane udaje spravne
+        /// </summary>
         public void EditRacer()
         {
             if (StartNumber == 0 || Name == "" || Age == 0 ||Gender == Gender.NotEntered)
@@ -54,11 +60,18 @@ namespace FinishLine.Core
             RacerRepository.Edit(OldStartNumber, StartNumber, Name, Age, Gender, Country);
         }
 
+        /// <summary>
+        /// Metoda, ktora vola metodu na vymazanie pretekara
+        /// </summary>
         public void DeleteRacer()
         {
             RacerRepository.Delete(StartNumber);
         }
 
+        /// <summary>
+        /// Metoda, ktora nastavi pretekara podla indexu, potrebna pri editacii pretekara
+        /// </summary>
+        /// <param name="index"></param>
         public void GetRacerByIndex(int index)
         {
             Racer racer = RacerRepository.GetRacerByIndex(index);
@@ -70,6 +83,9 @@ namespace FinishLine.Core
             Country = racer.Country;
         }
 
+        /// <summary>
+        /// Metoda, ktora vola metodu na zistenie nasledujuceho startovacieho cisla
+        /// </summary>
         public void GetNextStartNumber()
         {
             NextStartNumber = RacerRepository.GetNextStartNumber();

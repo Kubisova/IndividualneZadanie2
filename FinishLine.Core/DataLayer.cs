@@ -17,6 +17,12 @@ namespace FinishLine.Core
     {
         public static string DirectoryPath { get; set; }
 
+        /// <summary>
+        /// Metoda, ktora ulozi data do jsona (data, ktore su ako objekty)
+        /// </summary>
+        /// <param name="racers">pretekari</param>
+        /// <param name="results">vysledky</param>
+        /// <param name="finishedRounds">odbehnute kola</param>
         public static void SaveToJson(BindingList<Racer> racers, BindingList<Result> results, BindingList<FinishedRound> finishedRounds)
         {
             try
@@ -32,6 +38,15 @@ namespace FinishLine.Core
             }
         }
 
+        /// <summary>
+        /// Metoda, ktora ulozi nastavenia do txt
+        /// </summary>
+        /// <param name="roundLength">dlzka kola</param>
+        /// <param name="roundCount">pocet kol</param>
+        /// <param name="numberOfWinners">pocet vitazov</param>
+        /// <param name="raceStartTime">zaciatok pretekov</param>
+        /// <param name="lastStartNumber">posledne startovacie cislo</param>
+        /// <param name="raceEndTime">koniec pretekov</param>
         public static void SaveSettingsToTxt(int roundLength, int roundCount, int numberOfWinners, DateTime raceStartTime,int lastStartNumber, DateTime raceEndTime)
         {
             try
@@ -53,12 +68,19 @@ namespace FinishLine.Core
                 throw;
             }
         }
-
+        /// <summary>
+        /// Metoda, ktora vrati cestu, kam ulozit data
+        /// </summary>
+        /// <param name="fileName">nazov suboru</param>
+        /// <returns>cestu</returns>
         public static string GetFullPath(string fileName)
         {
             return Path.Combine(DirectoryPath, fileName);
         }
 
+        /// <summary>
+        /// Metoda, ktora nacita pretekarov z jsona
+        /// </summary>
         public static void LoadRacersFromJson()
         {
             try
@@ -73,6 +95,9 @@ namespace FinishLine.Core
             }
         }
 
+        /// <summary>
+        /// Metoda, ktora nacita vysledky z jsona
+        /// </summary>
         public static void LoadResultsFromJson()
         {
             try
@@ -87,6 +112,9 @@ namespace FinishLine.Core
             }
         }
 
+        /// <summary>
+        /// Metoda, ktora nacita odbehnute kola z jsona
+        /// </summary>
         public static void LoadFinishedRoundsFromJson()
         {
             try
@@ -101,6 +129,9 @@ namespace FinishLine.Core
             }
         }
 
+        /// <summary>
+        /// Metoda, ktora nacita nastavenia z txt
+        /// </summary>
         public static void LoadFromTxt()
         {
             try

@@ -82,7 +82,7 @@ namespace FinishLine.Core
                 foreach (var finishedRound in FinishedRounds)
                 {
                     bool isRacerInResults = HasRacerFinishedHigherRound(finishedRound);
-                    if (finishedRound.FinishedRoundNumber == i && !isRacerInResults && finishedRound.FinishedRoundNumber <= RoundCount)  // && finishedRound.FinishedRoundNumber <= RoundCount
+                    if (finishedRound.FinishedRoundNumber == i && !isRacerInResults && finishedRound.FinishedRoundNumber <= RoundCount)
                     {
                         Result result = GetResult(finishedRound);
                         tempResults.Add(result);
