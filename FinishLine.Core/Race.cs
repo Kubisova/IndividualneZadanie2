@@ -19,6 +19,9 @@ namespace FinishLine.Core
         public static DateTime RaceStartTime { get; set; }
         public static DateTime RaceEndTime { get; set; }
 
+        public static bool HasStarted { get; private set;}
+        public static bool HasEnded { get; private set; }
+
         public static BindingList<FinishedRound> FinishedRounds { get; set; } = new BindingList<FinishedRound>();
         public static BindingList<Result> Results { get; set; } = new BindingList<Result>();
 
@@ -28,6 +31,7 @@ namespace FinishLine.Core
         public static void StartRace()
         {
             RaceStartTime = DateTime.Now;
+            HasStarted = true;
         }
 
         /// <summary>
@@ -36,6 +40,7 @@ namespace FinishLine.Core
         public static void EndRace()
         {
             RaceEndTime = DateTime.Now;
+            HasEnded = true;
         }
 
         /// <summary>
@@ -51,7 +56,7 @@ namespace FinishLine.Core
             finishedRound.FinishedRoundNumber = ++lastFinishedRoundNumber;
             finishedRound.RacerNumber = racerNumber;
             finishedRound.RacerName = GetRacerNameByStartNumber(racerNumber);
-            finishedRound.RoundTime = finishedRound.FinishedRoundTime - RaceStartTime;
+            finishedRound.RoundTime = finishedRound.FinishedRoundTime - RaceStartTime; //.ToString("dd.MM.yyyy HH:mm:ss.fff");
 
             FinishedRounds.Add(finishedRound);
             RefreshResults();

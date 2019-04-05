@@ -25,7 +25,12 @@ namespace FinishLine
 
         private void Init()
         {
-            
+            if (Race.HasStarted)
+            {
+                btnAddRacer.Enabled = false;
+                btnEdit.Enabled = false;
+                btnDelete.Enabled = false;
+            }
         }
 
         private void btnAddRacer_Click(object sender, EventArgs e)

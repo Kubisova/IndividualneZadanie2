@@ -21,15 +21,13 @@ namespace FinishLine
             InitializeComponent();
             dGVFinishedRounds.DataSource = Race.FinishedRounds;
             dGVResults.DataSource = Race.Results;
+            dGVFinishedRounds.Columns[4].DefaultCellStyle.Format = "hh\\:mm\\:ss\\.ff";
+            dGVResults.Columns[3].DefaultCellStyle.Format = "hh\\:mm\\:ss\\.ff";
+
         }
 
         private void RacersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Race.RaceStartTime != DateTime.MinValue)
-            {
-                MessageBox.Show("Nie je možné pridávať pretekárov. Preteky sa už začali.", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else
             {
                 using (var frmRacers = new FrmRacers(this, new FrmRacersViewModel()))
                 {
@@ -41,11 +39,6 @@ namespace FinishLine
 
         private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Race.RaceStartTime != DateTime.MinValue)
-            {
-                MessageBox.Show("Nie je možné meniť nastavenia. Preteky sa už začali.", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else
             {
                 using (var frmSettings = new FrmSettings(this, new FrmSettingsViewModel()))
                 {
@@ -57,7 +50,7 @@ namespace FinishLine
 
         private void btnStartRace_Click(object sender, EventArgs e)
         {
-            if (Race.RaceStartTime != DateTime.MinValue)
+            if (Race.HasStarted)
             {
                 MessageBox.Show("Nie je možné znova odštartovať preteky.", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -124,7 +117,7 @@ namespace FinishLine
 
         private void btnRaceEnd_Click(object sender, EventArgs e)
         {
-            if (Race.RaceEndTime != DateTime.MinValue)
+            if (Race.HasEnded)
             {
                 MessageBox.Show("Nie je možné znova ukončiť preteky.", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }

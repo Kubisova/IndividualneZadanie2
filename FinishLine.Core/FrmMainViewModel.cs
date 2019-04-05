@@ -39,12 +39,12 @@ namespace FinishLine.Core
                 throw new ArgumentException("Pretekár s takýmto štartovacím číslom nie je zaregistrovaný.");
             }
 
-            if (Race.RaceStartTime == DateTime.MinValue)
+            if (!Race.HasStarted)
             {
                 throw new ArgumentException("Preteky sa ešte nezačali. Je potrebné ich najskôr odštartovať.");
             }
 
-            if (Race.RaceEndTime!= DateTime.MinValue)
+            if (Race.HasEnded)
             {
                 throw new ArgumentException("Preteky sa už skončili.");
             }
