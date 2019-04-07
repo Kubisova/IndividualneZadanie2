@@ -29,12 +29,11 @@ namespace FinishLine
             numRoundCount.Value = _frmSettingsViewModel.RoundCount;
             numNumberOfWinners.Value = _frmSettingsViewModel.NumberOfWinners;
 
-            if (Race.HasStarted)
+            if (_frmSettingsViewModel.Race.HasStarted)
             {
                 btnSave.Enabled = false;
                 MessageBox.Show("Preteky sa už začali a preto nie je možné meniť nastavenia.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-
         }
 
         private void btnSave_Click(object sender, EventArgs e)

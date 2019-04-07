@@ -7,17 +7,34 @@ using System.Threading.Tasks;
 namespace FinishLine.Core
 {
     /// <summary>
-    /// Trieda, ktora je na pozadi hlavneho formulara a zbiera a preposiela data dalej alebo naspat
+    /// Trieda na pozadi hlavneho formulara zbiera a preposiela data dalej alebo naspat
     /// </summary>
     public class FrmMainViewModel
     {
         public int RacerNumber { get; set; }
+        public Race Race { get; private set; }
+        public RacerRepository RacerRepository { get; private set; }
+
+        public FrmMainViewModel(Race race, RacerRepository racerRepository)
+        {
+            Race = race;
+            RacerRepository = racerRepository;
+        }
 
         /// <summary>
         /// Metoda, ktora vola metodu na odstartovanie pretekov
         /// </summary>
         public void StartRace()
         {
+            if (Race.HasStarted)
+            {
+                throw new ArgumentException("Nie je možné znova odštartovať preteky.");
+            }
+            if (RacerRepository.Racers.Count == 0)
+            {
+                throw new ArgumentException("Nie je možné odštartovať preteky - nie sú zaregistrovaní žiadny pretekári.");
+            }
+
             Race.StartRace();
         }
 
@@ -26,6 +43,11 @@ namespace FinishLine.Core
         /// </summary>
         public void EndRace()
         {
+            if (Race.HasEnded)
+            {
+                throw new ArgumentException("Nie je možné znova ukončiť preteky.");
+            }
+
             Race.EndRace();
         }
 
@@ -49,7 +71,7 @@ namespace FinishLine.Core
                 throw new ArgumentException("Preteky sa už skončili.");
             }
 
-            Race.RegisterFinishedRound(RacerNumber);
+            Race.RegisterFinishedRound(RacerNumber, RacerRepository);
         }
 
         /// <summary>
@@ -59,8 +81,7 @@ namespace FinishLine.Core
         public void SaveToFile(string directoryPath)
         {
             DataLayer.DirectoryPath = directoryPath;
-            DataLayer.SaveToJson(RacerRepository.Racers, Race.Results, Race.FinishedRounds);
-            DataLayer.SaveSettingsToTxt(Race.RoundLength, Race.RoundCount, Race.NumberOfWinners, Race.RaceStartTime, RacerRepository.LastStartNumber, Race.RaceEndTime);
+            DataLayer.SaveToJson(Race, RacerRepository);
         }
 
         /// <summary>
@@ -70,11 +91,29 @@ namespace FinishLine.Core
         public void LoadFromFile(string directoryPath)
         {
             DataLayer.DirectoryPath = directoryPath;
-            DataLayer.LoadRacersFromJson();
-            DataLayer.LoadResultsFromJson();
-            DataLayer.LoadFinishedRoundsFromJson();
-            DataLayer.LoadFromTxt();
+
+            Race = DataLayer.LoadRaceFromJson();
+            RacerRepository = DataLayer.LoadRaceRepositoryFromJson();
         }
 
+        /// <summary>
+        /// Metoda, ktora vrati cas zacatia pretekov ako string
+        /// </summary>
+        /// <returns></returns>
+        public string GetRaceStartTimeString()
+        {
+            return Race.RaceStartTimeToString();
+        }
+
+        /// <summary>
+        /// Metoda, ktora vrati cas konca pretekov ako string
+        /// </summary>
+        /// <returns></returns>
+        public string GetRaceEndTimeString()
+        {
+            return Race.RaceEndTimeToString();
+        }
+
+        
     }
 }

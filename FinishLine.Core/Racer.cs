@@ -1,12 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FinishLine.Core
 {
-    public enum Gender { Male, Female, NotEntered}
+    public enum Gender
+    {
+        [Description ("Muž")]
+        Male,
+        [Description("Žena")]
+        Female,
+        [Description("Nezadané")]
+        NotEntered
+    }
 
     /// <summary>
     /// Trieda, ktora reprezentuje pretekara

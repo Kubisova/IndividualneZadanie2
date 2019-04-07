@@ -10,10 +10,9 @@ namespace FinishLine.Core
     /// <summary>
     /// Trieda, v ktorej su ulozeny vsetci pretekari
     /// </summary>
-    public static class RacerRepository
+    public class RacerRepository
     {
-        public static BindingList<Racer> Racers { get; set; } = new BindingList<Racer>();
-        public static int LastStartNumber { get; set; }
+        public BindingList<Racer> Racers { get; set; } = new BindingList<Racer>();
 
         /// <summary>
         /// Metoda, ktora prida pretekara do zoznamu pretekarov
@@ -23,13 +22,8 @@ namespace FinishLine.Core
         /// <param name="age">vek</param>
         /// <param name="gender">pohlavie</param>
         /// <param name="country">krajina</param>
-        public static void Add(int startNumber, string name, int age, Gender gender, string country)
+        public void Add(int startNumber, string name, int age, Gender gender, string country)
         {
-            if (startNumber == GetNextStartNumber())
-            {
-                LastStartNumber = startNumber;
-            }
-
             Racer racer = RacerFactory.CreateRacer(startNumber, name, age, gender, country);
             Racers.Add(racer);
         }
@@ -43,7 +37,7 @@ namespace FinishLine.Core
         /// <param name="age">vek</param>
         /// <param name="gender">pohlavie</param>
         /// <param name="country">krajina</param>
-        public static void Edit(int oldStartNumber,int startNumber, string name, int age, Gender gender, string country)
+        public void Edit(int oldStartNumber,int startNumber, string name, int age, Gender gender, string country)
         {
             Racer racer = GetRacerByStartNumber(oldStartNumber);
             racer.StartNumber = startNumber;
@@ -57,7 +51,7 @@ namespace FinishLine.Core
         /// Metoda, ktora vymaze pretekara s danym startovacim cislom zo zoznamu pretekarov
         /// </summary>
         /// <param name="startNumber">startovacie cislo</param>
-        public static void Delete(int startNumber)
+        public void Delete(int startNumber)
         {
             int index = 0;
             foreach (var racer in Racers)
@@ -76,7 +70,7 @@ namespace FinishLine.Core
         /// </summary>
         /// <param name="index">index</param>
         /// <returns>pretekara s danym indexom</returns>
-        public static Racer GetRacerByIndex(int index)
+        public Racer GetRacerByIndex(int index)
         {
             Racer racer = Racers[index];
             return racer;
@@ -87,7 +81,7 @@ namespace FinishLine.Core
         /// </summary>
         /// <param name="startNumber">startovacie cislo</param>
         /// <returns>pretekara s danym startovacim cislom</returns>
-        public static Racer GetRacerByStartNumber(int startNumber)
+        public Racer GetRacerByStartNumber(int startNumber)
         {
             Racer racer = null;
             foreach (var r in Racers)
@@ -105,19 +99,12 @@ namespace FinishLine.Core
         /// Metoda, ktora vrati nasledujuce startovacie cislo
         /// </summary>
         /// <returns>nasledujuce startovacie cislo</returns>
-        public static int GetNextStartNumber()
+        public int GetNextStartNumber()
         {
             int nextStartNumber = 1;
-            if (Racers.Count > 0)
+            while(IsStartNumberUsed(nextStartNumber))
             {
-                int tempNumber = LastStartNumber;
-
-                do
-                {
-                    tempNumber++;
-                    nextStartNumber = tempNumber;
-                }
-                while (Racers.Any(r => r.StartNumber == nextStartNumber));
+                nextStartNumber++;
             }
 
             return nextStartNumber;
@@ -128,7 +115,7 @@ namespace FinishLine.Core
         /// </summary>
         /// <param name="startNumber"></param>
         /// <returns> true alebo false</returns>
-        public static bool IsStartNumberUsed(int startNumber)
+        public bool IsStartNumberUsed(int startNumber)
         {
             return Racers.Any(r => r.StartNumber == startNumber);
         }

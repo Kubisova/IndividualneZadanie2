@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddRacer.cs">
+    <Compile Include="FrmAddRacer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddRacer.Designer.cs">
-      <DependentUpon>AddRacer.cs</DependentUpon>
+    <Compile Include="FrmAddRacer.Designer.cs">
+      <DependentUpon>FrmAddRacer.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmSettings.cs">
       <SubType>Form</SubType>
@@ -75,8 +75,8 @@
     <Compile Include="Subro.Controls.cs">
       <SubType>Component</SubType>
     </Compile>
-    <EmbeddedResource Include="AddRacer.resx">
-      <DependentUpon>AddRacer.cs</DependentUpon>
+    <EmbeddedResource Include="FrmAddRacer.resx">
+      <DependentUpon>FrmAddRacer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSettings.resx">
       <DependentUpon>FrmSettings.cs</DependentUpon>

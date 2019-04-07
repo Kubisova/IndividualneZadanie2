@@ -19,13 +19,19 @@ namespace FinishLine
         {
             _frmRacersViewModel = frmRacersViewModel;
             InitializeComponent();
-            dGVRacers.DataSource = RacerRepository.Racers;
+            dGVRacers.DataSource = _frmRacersViewModel.RacerRepository.Racers;
+            dGVRacers.Columns[0].DefaultCellStyle.Format = "000";
             Init();
         }
 
         private void Init()
         {
-            if (Race.HasStarted)
+            if (_frmRacersViewModel.RacerRepository.Racers.Count >= Race.NUMBER_OF_RUNNERS)
+            {
+                btnAddRacer.Enabled = false;
+            }
+
+            if (_frmRacersViewModel.Race.HasStarted)
             {
                 btnAddRacer.Enabled = false;
                 btnEdit.Enabled = false;
@@ -35,22 +41,29 @@ namespace FinishLine
 
         private void btnAddRacer_Click(object sender, EventArgs e)
         {
-            using (var frmAddRacer = new FrmAddRacer(this, new FrmAddRacersViewModel()))
+            using (var frmAddRacer = new FrmAddRacer(this, new FrmAddRacersViewModel(_frmRacersViewModel.RacerRepository)))
             {
                 frmAddRacer.StartPosition = FormStartPosition.CenterParent;
                 frmAddRacer.ShowDialog();
+            }
+            if (_frmRacersViewModel.RacerRepository.Racers.Count >= Race.NUMBER_OF_RUNNERS)
+            {
+                btnAddRacer.Enabled = false;
             }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            int index = dGVRacers.CurrentRow.Index;
-            using (var frmAddRacer = new FrmAddRacer(this, new FrmAddRacersViewModel(), index))
+            
+            if (dGVRacers.CurrentRow != null)
             {
-                
-                frmAddRacer.Text = "Oprav pretekára";
-                frmAddRacer.StartPosition = FormStartPosition.CenterParent;
-                frmAddRacer.ShowDialog();
+                int index = dGVRacers.CurrentRow.Index;
+                using (var frmAddRacer = new FrmAddRacer(this, new FrmAddRacersViewModel(_frmRacersViewModel.RacerRepository), index))
+                {
+                    frmAddRacer.Text = "Oprav pretekára";
+                    frmAddRacer.StartPosition = FormStartPosition.CenterParent;
+                    frmAddRacer.ShowDialog();
+                }
             }
         }
 
@@ -61,9 +74,15 @@ namespace FinishLine
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            
             foreach (DataGridViewRow row in dGVRacers.SelectedRows)
             {
                 dGVRacers.Rows.RemoveAt(row.Index);
+            }
+
+            if (_frmRacersViewModel.RacerRepository.Racers.Count < Race.NUMBER_OF_RUNNERS)
+            {
+                btnAddRacer.Enabled = true;
             }
         }
     }

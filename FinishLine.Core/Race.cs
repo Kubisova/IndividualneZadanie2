@@ -10,25 +10,26 @@ namespace FinishLine.Core
     /// <summary>
     /// Trieda, v ktorej sa uskutocnuju a vyhodnocuju preteky
     /// </summary>
-    public static class Race
+    public class Race
     {
-        public static int RoundLength { get; set; } = 1;
-        public static int RoundCount { get; set; } = 50;
-        public static int NumberOfWinners { get; set; } = 3;
+        public int RoundLength { get; set; } = 1;
+        public int RoundCount { get; set; } = 50;
+        public int NumberOfWinners { get; set; } = 3;
+        public const int NUMBER_OF_RUNNERS = 999;
 
-        public static DateTime RaceStartTime { get; set; }
-        public static DateTime RaceEndTime { get; set; }
+        public DateTime RaceStartTime { get; set; }
+        public DateTime RaceEndTime { get; set; }
 
-        public static bool HasStarted { get; private set;}
-        public static bool HasEnded { get; private set; }
+        public bool HasStarted { get; set;}
+        public bool HasEnded { get; set; }
 
-        public static BindingList<FinishedRound> FinishedRounds { get; set; } = new BindingList<FinishedRound>();
-        public static BindingList<Result> Results { get; set; } = new BindingList<Result>();
+        public BindingList<FinishedRound> FinishedRounds { get; set; } = new BindingList<FinishedRound>();
+        public BindingList<Result> Results { get; set; } = new BindingList<Result>();
 
         /// <summary>
         /// Metoda, ktora odstartuje preteky
         /// </summary>
-        public static void StartRace()
+        public void StartRace()
         {
             RaceStartTime = DateTime.Now;
             HasStarted = true;
@@ -37,7 +38,7 @@ namespace FinishLine.Core
         /// <summary>
         /// Metoda, ktora skonci preteky
         /// </summary>
-        public static void EndRace()
+        public void EndRace()
         {
             RaceEndTime = DateTime.Now;
             HasEnded = true;
@@ -47,7 +48,7 @@ namespace FinishLine.Core
         /// Metoda, ktora zaznamena odbehnute kolo
         /// </summary>
         /// <param name="racerNumber">startovacie cislo pretekara</param>
-        public static void RegisterFinishedRound(int racerNumber)
+        public void RegisterFinishedRound(int racerNumber, RacerRepository racerRepository)
         {
             FinishedRound finishedRound = new FinishedRound();
 
@@ -55,8 +56,8 @@ namespace FinishLine.Core
             int lastFinishedRoundNumber = GetHighestRacersFinishedRound(racerNumber);
             finishedRound.FinishedRoundNumber = ++lastFinishedRoundNumber;
             finishedRound.RacerNumber = racerNumber;
-            finishedRound.RacerName = GetRacerNameByStartNumber(racerNumber);
-            finishedRound.RoundTime = finishedRound.FinishedRoundTime - RaceStartTime; //.ToString("dd.MM.yyyy HH:mm:ss.fff");
+            finishedRound.RacerName = GetRacerNameByStartNumber(racerNumber, racerRepository);
+            finishedRound.RoundTime = finishedRound.FinishedRoundTime - RaceStartTime; 
 
             FinishedRounds.Add(finishedRound);
             RefreshResults();
@@ -67,19 +68,20 @@ namespace FinishLine.Core
         /// </summary>
         /// <param name="startNumber">startovacie cislo pretekara</param>
         /// <returns>meno pretekara</returns>
-        public static string GetRacerNameByStartNumber(int startNumber)
+        public string GetRacerNameByStartNumber(int startNumber, RacerRepository racerRepository)
         {
-            Racer racer = RacerRepository.GetRacerByStartNumber(startNumber);
+            Racer racer = racerRepository.GetRacerByStartNumber(startNumber);
             return racer.Name;
         }
 
         /// <summary>
         /// Metoda, ktora zisti a refresne celkove vysledky
         /// </summary>
-        public static void RefreshResults()
+        public void RefreshResults()
         {
             Results.Clear();
             int highestFinishedRound = FinishedRounds.Max(x => x.FinishedRoundNumber);
+            int ranking = 0;
             for (int i = highestFinishedRound; i > 0; i--)
             {
                 List<Result> tempResults = new List<Result>();
@@ -98,6 +100,7 @@ namespace FinishLine.Core
 
                 for (int j = 0; j < sortedList.Count; j++)
                 {
+                    sortedList[j].Ranking = ++ranking;
                     Results.Add(sortedList[j]);
                 }
             }
@@ -108,7 +111,7 @@ namespace FinishLine.Core
         /// </summary>
         /// <param name="highestFinishedRound">posledne/najvyssie odbehnute kolo</param>
         /// <returns>vysledok</returns>
-        public static Result GetResult(FinishedRound highestFinishedRound)
+        public Result GetResult(FinishedRound highestFinishedRound)
         {
             Result result = new Result
             {
@@ -126,7 +129,7 @@ namespace FinishLine.Core
         /// </summary>
         /// <param name="finishedRound">odbehnute kolo</param>
         /// <returns>true alebo false</returns>
-        public static bool HasRacerFinishedHigherRound(FinishedRound finishedRound)
+        public bool HasRacerFinishedHigherRound(FinishedRound finishedRound)
         {
             Result result = Results.FirstOrDefault(r => r.RacerNumber == finishedRound.RacerNumber);
             if (result == null)
@@ -144,7 +147,7 @@ namespace FinishLine.Core
         /// </summary>
         /// <param name="startNumber">startovacie cislo</param>
         /// <returns></returns>
-        public static int GetHighestRacersFinishedRound(int startNumber)
+        public int GetHighestRacersFinishedRound(int startNumber)
         {
             int highestFinishedRound = 0;
             List <FinishedRound> finishedRoundsList = FinishedRounds.ToList();
@@ -155,6 +158,24 @@ namespace FinishLine.Core
             }
 
             return highestFinishedRound;
+        }
+
+        /// <summary>
+        /// Metoda, ktora vrati zaciatok pretekov ako string
+        /// </summary>
+        /// <returns></returns>
+        public string RaceStartTimeToString()
+        {
+            return RaceStartTime.ToLongTimeString();
+        }
+
+        /// <summary>
+        /// metoda, ktora vrati koniec pretekov ako string
+        /// </summary>
+        /// <returns></returns>
+        public string RaceEndTimeToString()
+        {
+            return RaceEndTime.ToLongTimeString();
         }
     }
 }

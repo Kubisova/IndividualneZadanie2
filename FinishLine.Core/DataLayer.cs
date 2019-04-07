@@ -16,20 +16,20 @@ namespace FinishLine.Core
     public static class DataLayer
     {
         public static string DirectoryPath { get; set; }
+        public const string NAME_OF_FILE_FOR_RACE = "Race.json";
+        public const string NAME_OF_FILE_FOR_RACERREPOSITORY = "RacerRepository.json";
 
         /// <summary>
-        /// Metoda, ktora ulozi data do jsona (data, ktore su ako objekty)
+        /// Metoda, ktora ulozi data do jsona
         /// </summary>
-        /// <param name="racers">pretekari</param>
-        /// <param name="results">vysledky</param>
-        /// <param name="finishedRounds">odbehnute kola</param>
-        public static void SaveToJson(BindingList<Racer> racers, BindingList<Result> results, BindingList<FinishedRound> finishedRounds)
+        /// <param name="race">pretek</param>
+        /// <param name="raceRepozitory">repozitar pretekarov</param>
+        public static void SaveToJson(Race race, RacerRepository racerRepository)
         {
             try
             {
-                File.WriteAllText(GetFullPath("Racers.json"), JsonConvert.SerializeObject(racers));
-                File.WriteAllText(GetFullPath("Results.json"), JsonConvert.SerializeObject(results));
-                File.WriteAllText(GetFullPath("FinishedRounds.json"), JsonConvert.SerializeObject(finishedRounds));
+                File.WriteAllText(GetFullPath(NAME_OF_FILE_FOR_RACE), JsonConvert.SerializeObject(race));
+                File.WriteAllText(GetFullPath(NAME_OF_FILE_FOR_RACERREPOSITORY), JsonConvert.SerializeObject(racerRepository));
             }
             catch (Exception ex)
             {
@@ -37,37 +37,7 @@ namespace FinishLine.Core
                 throw;
             }
         }
-
-        /// <summary>
-        /// Metoda, ktora ulozi nastavenia do txt
-        /// </summary>
-        /// <param name="roundLength">dlzka kola</param>
-        /// <param name="roundCount">pocet kol</param>
-        /// <param name="numberOfWinners">pocet vitazov</param>
-        /// <param name="raceStartTime">zaciatok pretekov</param>
-        /// <param name="lastStartNumber">posledne startovacie cislo</param>
-        /// <param name="raceEndTime">koniec pretekov</param>
-        public static void SaveSettingsToTxt(int roundLength, int roundCount, int numberOfWinners, DateTime raceStartTime,int lastStartNumber, DateTime raceEndTime)
-        {
-            try
-            {
-                using (StreamWriter sw = new StreamWriter(GetFullPath("Settings.txt")))
-                {
-                    sw.WriteLine(roundLength);
-                    sw.WriteLine(roundCount);
-                    sw.WriteLine(numberOfWinners);
-                    sw.WriteLine(raceStartTime);
-                    sw.WriteLine(lastStartNumber);
-                    sw.WriteLine(raceEndTime);
-
-                }
-            }
-            catch (Exception ex)
-            {
-                ErrorLogger.ErrorLogging(ex);
-                throw;
-            }
-        }
+          
         /// <summary>
         /// Metoda, ktora vrati cestu, kam ulozit data
         /// </summary>
@@ -81,12 +51,12 @@ namespace FinishLine.Core
         /// <summary>
         /// Metoda, ktora nacita pretekarov z jsona
         /// </summary>
-        public static void LoadRacersFromJson()
+        public static Race LoadRaceFromJson()
         {
             try
             {
-                BindingList<Racer> racers = JsonConvert.DeserializeObject<BindingList<Racer>>(File.ReadAllText(GetFullPath("Racers.json")));
-                RacerRepository.Racers = racers;
+                Race race = JsonConvert.DeserializeObject<Race>(File.ReadAllText(GetFullPath(NAME_OF_FILE_FOR_RACE)));
+                return race;
             }
             catch (Exception ex)
             {
@@ -98,53 +68,12 @@ namespace FinishLine.Core
         /// <summary>
         /// Metoda, ktora nacita vysledky z jsona
         /// </summary>
-        public static void LoadResultsFromJson()
+        public static RacerRepository LoadRaceRepositoryFromJson()
         {
             try
             {
-                BindingList<Result> results = JsonConvert.DeserializeObject<BindingList<Result>>(File.ReadAllText(GetFullPath("Results.json")));
-                Race.Results = results;
-            }
-            catch (Exception ex)
-            {
-                ErrorLogger.ErrorLogging(ex);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// Metoda, ktora nacita odbehnute kola z jsona
-        /// </summary>
-        public static void LoadFinishedRoundsFromJson()
-        {
-            try
-            {
-                BindingList<FinishedRound> finishedRounds = JsonConvert.DeserializeObject<BindingList<FinishedRound>>(File.ReadAllText(GetFullPath("FinishedRounds.json")));
-                Race.FinishedRounds = finishedRounds;
-            }
-            catch (Exception ex)
-            {
-                ErrorLogger.ErrorLogging(ex);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// Metoda, ktora nacita nastavenia z txt
-        /// </summary>
-        public static void LoadFromTxt()
-        {
-            try
-            {
-                string[] settings = File.ReadAllLines(GetFullPath("Settings.txt"));
-                Race.RoundLength = int.Parse(settings[0]);
-                Race.RoundCount = int.Parse(settings[1]);
-                Race.NumberOfWinners = int.Parse(settings[2]);
-                Race.RaceStartTime = DateTime.Parse(settings[3]);
-                RacerRepository.LastStartNumber = int.Parse(settings[4]);
-                Race.RaceEndTime = DateTime.Parse(settings[5]);
-
-
+                RacerRepository racerRepository = JsonConvert.DeserializeObject<RacerRepository>(File.ReadAllText(GetFullPath(NAME_OF_FILE_FOR_RACERREPOSITORY)));
+                return racerRepository;
             }
             catch (Exception ex)
             {

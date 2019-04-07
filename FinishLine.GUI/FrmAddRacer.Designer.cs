@@ -146,7 +146,7 @@
             // 
             this.numStartNumber.Location = new System.Drawing.Point(138, 23);
             this.numStartNumber.Maximum = new decimal(new int[] {
-            999,
+            100000,
             0,
             0,
             0});
@@ -168,7 +168,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(432, 283);
+            this.ClientSize = new System.Drawing.Size(432, 282);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.numStartNumber);
             this.Controls.Add(this.numAge);

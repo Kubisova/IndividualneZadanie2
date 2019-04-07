@@ -21,6 +21,17 @@ namespace FinishLine.Core
         public int OldStartNumber { get; set; }
         public int NextStartNumber { get; set; }
 
+        public RacerRepository RacerRepository { get; private set; }
+
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
+        /// <param name="racerRepository"></param>
+        public FrmAddRacersViewModel(RacerRepository racerRepository)
+        {
+            RacerRepository = racerRepository;
+        }
+
         /// <summary>
         /// Metoda, ktora vola metodu na pridanie pretekara a zistuje ci su zadane udaje spravne
         /// </summary>
@@ -34,6 +45,11 @@ namespace FinishLine.Core
             if (RacerRepository.IsStartNumberUsed(StartNumber))
             {
                 throw new ArgumentException("Zadané štartovacie číslo už bolo pridelené!");
+            }
+
+            if (StartNumber > Race.NUMBER_OF_RUNNERS)
+            {
+                throw new ArgumentException("Zadané štartovacie číslo je väčšie ako maximálny počet účastníkov!");
             }
 
             RacerRepository.Add(StartNumber, Name, Age, Gender, Country);

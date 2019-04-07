@@ -103,6 +103,7 @@ namespace FinishLine
             {
                 MessageBox.Show(ex.Message, "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+            
         }
     }
 }

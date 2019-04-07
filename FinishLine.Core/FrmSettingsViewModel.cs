@@ -15,6 +15,13 @@ namespace FinishLine.Core
         public int RoundCount { get; set; }
         public int NumberOfWinners { get; set; }
 
+        public Race Race { get; private set; }
+
+        public FrmSettingsViewModel(Race race)
+        {
+            Race = race;
+        }
+
         /// <summary>
         /// Metoda na ulozenie nastaveni
         /// </summary>

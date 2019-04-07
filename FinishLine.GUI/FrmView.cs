@@ -19,17 +19,18 @@ namespace FinishLine
         {
             _frmMainViewModel = frmMainViewModel;
             InitializeComponent();
-            dGVFinishedRounds.DataSource = Race.FinishedRounds;
-            dGVResults.DataSource = Race.Results;
+            dGVFinishedRounds.DataSource = _frmMainViewModel.Race.FinishedRounds;
+            dGVResults.DataSource =  _frmMainViewModel.Race.Results;
             dGVFinishedRounds.Columns[4].DefaultCellStyle.Format = "hh\\:mm\\:ss\\.ff";
-            dGVResults.Columns[3].DefaultCellStyle.Format = "hh\\:mm\\:ss\\.ff";
-
+            dGVFinishedRounds.Columns[0].DefaultCellStyle.Format = "000";
+            dGVResults.Columns[4].DefaultCellStyle.Format = "hh\\:mm\\:ss\\.ff";
+            dGVResults.Columns[1].DefaultCellStyle.Format = "000";
         }
 
         private void RacersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             {
-                using (var frmRacers = new FrmRacers(this, new FrmRacersViewModel()))
+                using (var frmRacers = new FrmRacers(this, new FrmRacersViewModel(_frmMainViewModel.Race, _frmMainViewModel.RacerRepository)))
                 {
                     frmRacers.StartPosition = FormStartPosition.CenterParent;
                     frmRacers.ShowDialog();
@@ -40,7 +41,7 @@ namespace FinishLine
         private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             {
-                using (var frmSettings = new FrmSettings(this, new FrmSettingsViewModel()))
+                using (var frmSettings = new FrmSettings(this, new FrmSettingsViewModel(_frmMainViewModel.Race)))
                 {
                     frmSettings.StartPosition = FormStartPosition.CenterParent;
                     frmSettings.ShowDialog();
@@ -50,12 +51,15 @@ namespace FinishLine
 
         private void btnStartRace_Click(object sender, EventArgs e)
         {
-            if (Race.HasStarted)
+            try
             {
-                MessageBox.Show("Nie je možné znova odštartovať preteky.", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                _frmMainViewModel.StartRace();
+                txtRaceStart.Text = _frmMainViewModel.GetRaceStartTimeString();
             }
-            _frmMainViewModel.StartRace();
-            txtRaceStart.Text = Race.RaceStartTime.ToLongTimeString();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void btnRegisterFinishedRound_Click(object sender, EventArgs e)
@@ -105,26 +109,30 @@ namespace FinishLine
                     MessageBox.Show("Chyba pri načítaní dát.");
                 }
 
-                dGVFinishedRounds.DataSource = Race.FinishedRounds;
-                dGVResults.DataSource = Race.Results;
+                dGVFinishedRounds.DataSource = _frmMainViewModel.Race.FinishedRounds;
+                dGVResults.DataSource = _frmMainViewModel.Race.Results;
+
+                if (_frmMainViewModel.Race.HasStarted)
+                {
+                    txtRaceStart.Text = _frmMainViewModel.GetRaceStartTimeString();
+                }
+                if (_frmMainViewModel.Race.HasEnded)
+                {
+                    txtRaceEnd.Text = _frmMainViewModel.GetRaceEndTimeString();
+                }
             }
-        }
-
-        private void folderBrowserDialog1_HelpRequest(object sender, EventArgs e)
-        {
-
         }
 
         private void btnRaceEnd_Click(object sender, EventArgs e)
         {
-            if (Race.HasEnded)
-            {
-                MessageBox.Show("Nie je možné znova ukončiť preteky.", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else
+            try
             {
                 _frmMainViewModel.EndRace();
-                txtRaceEnd.Text = Race.RaceEndTime.ToLongTimeString();
+                txtRaceEnd.Text = _frmMainViewModel.GetRaceEndTimeString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }

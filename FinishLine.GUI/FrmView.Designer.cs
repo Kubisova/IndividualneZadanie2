@@ -60,7 +60,7 @@
             this.RacersToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(994, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1069, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -104,7 +104,7 @@
             // btnStartRace
             // 
             this.btnStartRace.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnStartRace.Location = new System.Drawing.Point(526, 0);
+            this.btnStartRace.Location = new System.Drawing.Point(535, -1);
             this.btnStartRace.Name = "btnStartRace";
             this.btnStartRace.Size = new System.Drawing.Size(110, 23);
             this.btnStartRace.TabIndex = 1;
@@ -131,7 +131,7 @@
             this.dGVFinishedRounds.Name = "dGVFinishedRounds";
             this.dGVFinishedRounds.ReadOnly = true;
             this.dGVFinishedRounds.RowHeadersVisible = false;
-            this.dGVFinishedRounds.Size = new System.Drawing.Size(508, 434);
+            this.dGVFinishedRounds.Size = new System.Drawing.Size(508, 428);
             this.dGVFinishedRounds.TabIndex = 4;
             // 
             // lblTempResults
@@ -149,11 +149,11 @@
             this.dGVResults.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dGVResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dGVResults.Location = new System.Drawing.Point(526, 103);
+            this.dGVResults.Location = new System.Drawing.Point(535, 103);
             this.dGVResults.Name = "dGVResults";
             this.dGVResults.ReadOnly = true;
             this.dGVResults.RowHeadersVisible = false;
-            this.dGVResults.Size = new System.Drawing.Size(461, 434);
+            this.dGVResults.Size = new System.Drawing.Size(522, 428);
             this.dGVResults.TabIndex = 6;
             // 
             // lblFinalResult
@@ -176,13 +176,9 @@
             this.btnRegisterFinishedRound.UseVisualStyleBackColor = true;
             this.btnRegisterFinishedRound.Click += new System.EventHandler(this.btnRegisterFinishedRound_Click);
             // 
-            // folderBrowserDialog1
-            // 
-            this.folderBrowserDialog1.HelpRequest += new System.EventHandler(this.folderBrowserDialog1_HelpRequest);
-            // 
             // btnRaceEnd
             // 
-            this.btnRaceEnd.Location = new System.Drawing.Point(526, 29);
+            this.btnRaceEnd.Location = new System.Drawing.Point(535, 29);
             this.btnRaceEnd.Name = "btnRaceEnd";
             this.btnRaceEnd.Size = new System.Drawing.Size(110, 23);
             this.btnRaceEnd.TabIndex = 9;
@@ -217,7 +213,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(994, 543);
+            this.ClientSize = new System.Drawing.Size(1069, 543);
             this.Controls.Add(this.numRacerNumber);
             this.Controls.Add(this.txtRaceEnd);
             this.Controls.Add(this.txtRaceStart);
@@ -231,8 +227,8 @@
             this.Controls.Add(this.btnStartRace);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximumSize = new System.Drawing.Size(1010, 1000);
-            this.MinimumSize = new System.Drawing.Size(1010, 581);
+            this.MaximumSize = new System.Drawing.Size(1085, 1000);
+            this.MinimumSize = new System.Drawing.Size(1085, 581);
             this.Name = "FrmView";
             this.Text = "Bežecké preteky";
             this.menuStrip1.ResumeLayout(false);
